@@ -1,4 +1,3 @@
-import 'package:everpobre/domain/note.dart';
 import 'package:everpobre/domain/notebook.dart';
 import 'package:flutter/material.dart';
 

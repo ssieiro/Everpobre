@@ -1,10 +1,10 @@
-import 'package:everpobre/Scenes/notes_scene.dart';
+import 'package:everpobre/Scenes/notebooks_scene.dart';
 import 'package:everpobre/domain/notebook.dart';
+import 'package:everpobre/domain/notebooks.dart';
 import 'package:everpobre/text_resources.dart';
 import 'package:flutter/material.dart';
-import 'package:everpobre/domain/note.dart';
 
-final Notebook model = Notebook.testDataBuilder("");
+final Notebooks model = Notebooks.testDataBuilder();
 void main() {
   runApp(TreeBuilder());
 }
@@ -14,18 +14,18 @@ class TreeBuilder extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.light().copyWith(
-        primaryColor: Color(0xFF388E3C),
-        accentColor: Color(0xFFFFC107),
+        primaryColor: const Color(0xFF388E3C),
+        accentColor: const Color(0xFFFFC107),
       ),
       title: TextResources.appName,
       home: Scaffold(
         appBar: AppBar(
           title: Text(TextResources.appName),
         ),
-        body: NotesListView(model),
+        body: NotebooksListView(model),
         floatingActionButton: FloatingActionButton(
           onPressed: () {
-            model.add(Note("Una nueva nota"));
+            model.add(Notebook("Nuevo Notebook"));
           },
           child: const Icon(Icons.add),
         ),
