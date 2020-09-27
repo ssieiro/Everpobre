@@ -4,7 +4,7 @@ import 'package:everpobre/text_resources.dart';
 import 'package:flutter/material.dart';
 import 'package:everpobre/domain/note.dart';
 
-final Notebook model = Notebook.testDataBuilder();
+final Notebook model = Notebook.testDataBuilder("");
 void main() {
   runApp(TreeBuilder());
 }

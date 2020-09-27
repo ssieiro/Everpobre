@@ -2,16 +2,20 @@ import 'package:everpobre/domain/note.dart';
 import 'package:flutter/material.dart';
 
 class Notebook with ChangeNotifier {
-  static final shared = Notebook();
+  final String _title;
+
+  String get title => _title;
+
+  //static final shared = Notebook("Single notebook");
 
   final List<Note> _notes = [];
 
   int get length => _notes.length;
 
   // Constructores
-  Notebook();
+  Notebook(String title) : _title = title;
 
-  Notebook.testDataBuilder() {
+  Notebook.testDataBuilder(String title) : _title = title {
     _notes.addAll(List.generate(100, (index) => Note("Item $index")));
   }
 

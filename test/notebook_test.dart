@@ -4,26 +4,27 @@ import 'package:everpobre/domain/note.dart';
 
 void main() {
   group("construction", () {
-    test("Can access the shared single notebook singleton", () {
-      expect(Notebook.shared, isNotNull);
+    test("Can create a notebook", () {
+      expect(Notebook("test"), isNotNull);
     });
   });
 
   group("removal", () {
     test("remove by index", () {
       final Note n = Note("hola");
-      Notebook.shared.add(n);
-      expect(() => Notebook.shared.removeAt(0), returnsNormally);
+      final Notebook _notebook = Notebook("test");
+      _notebook.add(n);
+      expect(() => _notebook.removeAt(0), returnsNormally);
 
-      Notebook.shared.add(n);
-      expect(Notebook.shared.removeAt(0), n);
+      _notebook.add(n);
+      expect(_notebook.removeAt(0), n);
     });
   });
 
   group("contents", () {
     test("length behaves correctly", () {
-      final nb = Notebook();
-      final nb2 = Notebook();
+      final nb = Notebook("test");
+      final nb2 = Notebook("test");
       final n = Note("Lorem Ipsum");
 
       expect(nb.length, 0);
