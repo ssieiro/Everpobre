@@ -54,33 +54,32 @@ class NotebookSliver extends StatefulWidget {
 class _NotebooksSliverState extends State<NotebookSliver> {
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      child: Dismissible(
-        key: UniqueKey(),
-        onDismissed: (direction) {
-          widget.notebooks.removeAt(widget.index);
-
-          Scaffold.of(context).showSnackBar(
-            const SnackBar(
-              content: Text("Notebook has been deleted!"),
-            ),
-          );
-          setState(() {});
-        },
-        background: Container(
-          color: Colors.red,
-        ),
-        child: Card(
+    return Dismissible(
+      key: UniqueKey(),
+      onDismissed: (direction) {
+        widget.notebooks.removeAt(widget.index);
+        Scaffold.of(context).showSnackBar(
+          const SnackBar(
+            content: Text("Notebook has been deleted!"),
+          ),
+        );
+        setState(() {});
+      },
+      background: Container(
+        color: Colors.red,
+      ),
+      child: Card(
+        child: GestureDetector(
           child: ListTile(
             leading: const Icon(Icons.library_books),
             title: Text(widget.notebooks[widget.index].title),
+            onTap: () {
+              Navigator.pushNamed(context, NotesWidget.routeName,
+                  arguments: widget.notebooks.getNotebook(widget.index));
+            },
           ),
         ),
       ),
-      onTap: () {
-        Navigator.pushNamed(context, NotesWidget.routeName,
-            arguments: widget.notebooks.getNotebook(widget.index));
-      },
     );
   }
 }
