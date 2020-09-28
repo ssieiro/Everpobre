@@ -1,4 +1,5 @@
 import 'package:everpobre/domain/notebooks.dart';
+import 'package:everpobre/main.dart';
 import 'package:flutter/material.dart';
 
 class NotebooksListView extends StatefulWidget {
@@ -53,27 +54,33 @@ class NotebookSliver extends StatefulWidget {
 class _NotebooksSliverState extends State<NotebookSliver> {
   @override
   Widget build(BuildContext context) {
-    return Dismissible(
-      key: UniqueKey(),
-      onDismissed: (direction) {
-        widget.notebooks.removeAt(widget.index);
+    return GestureDetector(
+      child: Dismissible(
+        key: UniqueKey(),
+        onDismissed: (direction) {
+          widget.notebooks.removeAt(widget.index);
 
-        Scaffold.of(context).showSnackBar(
-          const SnackBar(
-            content: Text("Notebook has been deleted!"),
+          Scaffold.of(context).showSnackBar(
+            const SnackBar(
+              content: Text("Notebook has been deleted!"),
+            ),
+          );
+          setState(() {});
+        },
+        background: Container(
+          color: Colors.red,
+        ),
+        child: Card(
+          child: ListTile(
+            leading: const Icon(Icons.library_books),
+            title: Text(widget.notebooks[widget.index].title),
           ),
-        );
-        setState(() {});
-      },
-      background: Container(
-        color: Colors.red,
-      ),
-      child: Card(
-        child: ListTile(
-          leading: const Icon(Icons.library_books),
-          title: Text(widget.notebooks[widget.index].title),
         ),
       ),
+      onTap: () {
+        Navigator.pushNamed(context, NotesWidget.routeName,
+            arguments: widget.notebooks.getNotebook(widget.index));
+      },
     );
   }
 }
