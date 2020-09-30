@@ -39,10 +39,6 @@ class Notebooks with ChangeNotifier {
     notifyListeners();
   }
 
-  Notebook getNotebook(int index) {
-    return _notebooks[index];
-  }
-
   // Object Protocol
   @override
   String toString() {
