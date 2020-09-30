@@ -75,7 +75,7 @@ class _NotebooksSliverState extends State<NotebookSliver> {
             title: Text(widget.notebooks[widget.index].title),
             onTap: () {
               Navigator.pushNamed(context, NotesWidget.routeName,
-                  arguments: widget.notebooks.getNotebook(widget.index));
+                  arguments: widget.notebooks[widget.index]);
             },
           ),
         ),
